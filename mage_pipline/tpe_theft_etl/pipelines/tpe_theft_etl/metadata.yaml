@@ -1,0 +1,91 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_exporters/taipei_crime_export_gloudstroge.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: taipei_crime_export_gloudstroge
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - taipei_crime_tranformer
+  uuid: taipei_crime_export_gloudstroge
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: transformers/taipei_crime_tranformer.py
+  downstream_blocks:
+  - taipei_crime_export_gloudstroge
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: taipei_crime_tranformer
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - taipei_crime_loader
+  uuid: taipei_crime_tranformer
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/taipei_crime_loader.py
+  downstream_blocks:
+  - taipei_crime_tranformer
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: taipei_crime_loader
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: taipei_crime_loader
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-03-27 07:24:41.530461+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: tpe_theft_etl
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-03-29T10:35:44+00:00'
+uuid: tpe_theft_etl
+variables:
+  bike: adf80a2b-b29d-4fca-888c-bcd26ae314e0
+  car: 967faed7-ea9b-4698-970a-d335d5e4ccc3
+  housing: 93d9bc2d-af08-4db7-a56b-9f0a49226fa3
+  motorcycle: ac508aeb-9f26-409c-9fb0-20c65a973498
+  theft_types:
+    "\u4F4F\u5B85\u7ACA\u76DC": housing
+    "\u6A5F\u8ECA\u7ACA\u76DC": motorcycle
+    "\u6C7D\u8ECA\u7ACA\u76DC": car
+    "\u81EA\u884C\u8ECA\u7ACA\u76DC": bike
+variables_dir: /home/src/mage_data/magic-zoomcamp
+widgets: []
