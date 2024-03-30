@@ -35,3 +35,18 @@ Use **batch** data pipeline running ETL jobs twice a week.
 ### Reproducibility
 
 - Instructions are clear, it's easy to run the code, and the code works
+
+
+### MISC
+
+Deploying mage to GCP
+the video DE Zoomcamp 2.2.7 is missing  the actual deployment of Mage using Terraform to GCP. The steps for the deployment were not covered in the video.
+I successfully deployed it and wanted to share some key points:
+In variables.tf, set the project_id default value to your GCP project ID.
+ 2 . Enable the Cloud Filestore API:
+ Visit the Google Cloud Console.
+Navigate to "APIs & Services" > "Library."
+Search for "Cloud Filestore API."
+Click on the API and enable it.
+To perform the deployment:
+terraform init
