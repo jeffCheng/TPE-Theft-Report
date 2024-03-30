@@ -34,9 +34,10 @@ where a.case_date1 BETWEEN PARSE_DATE('%Y%m%d', @DS_START_DATE) AND  PARSE_DATE(
 ```
 ### Dashboard
 - Connected to the Looker Studio
-1. 1 graph that shows the locations of the theft data
-2. 1 graph that shows the distribution of the data across one year
-Here is the Dashboard link: [https://lookerstudio.google.com/s/knsLtdAIIq4](https://lookerstudio.google.com/reporting/d2b9291f-7937-44ad-a40d-91cbe9c2df81)
+    1. 1 graph that shows the locations of the theft data
+    2. 1 graph that shows the distribution of the data across one year
+
+- Here is the Dashboard link: [https://lookerstudio.google.com/s/knsLtdAIIq4](https://lookerstudio.google.com/reporting/d2b9291f-7937-44ad-a40d-91cbe9c2df81)
 
 ### Reproducibility
 
