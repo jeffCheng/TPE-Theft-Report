@@ -6,7 +6,7 @@ if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/src/zoomcamp-mage.json'
-project_id = 'spry-bus-412003'
+project_id = '<your_project_id>'
 bucket_name = 'tpe_theft_open_data'
 table_name = 'theft'
 
