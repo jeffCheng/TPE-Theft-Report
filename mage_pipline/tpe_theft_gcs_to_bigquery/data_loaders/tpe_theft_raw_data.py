@@ -9,7 +9,7 @@ if 'test' not in globals():
 
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/src/zoomcamp-mage.json'
-project_id = 'spry-bus-412003'
+project_id = '<your_project_id>'
 bucket_name = 'tpe_theft_open_data'
 table_name = 'theft'
 
