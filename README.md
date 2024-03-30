@@ -15,7 +15,7 @@ Use **batch** data pipeline running ETL jobs twice a week.
 - **Data Warehouse**: BigQuery
 
 ### Cloud
-- The project is developed in the cloud and IaC tools are used
+- This project is developed in the GCP and Terraform is used for creating Google Cloud Storage and BigQuery dataset.
 
 ### Data ingestion 
 
@@ -23,30 +23,22 @@ Use **batch** data pipeline running ETL jobs twice a week.
     - End-to-end pipeline: multiple steps in the DAG, uploading data to data lake
 
 ### Data warehouse
-- Tables are partitioned and clustered in a way that makes sense for the upstream queries (with explanation)
+- Tables are partitioned and clustered in a way in different theft case types including house, motorcycle, bicycle and car because there is different API to call by each types. Although some use cases would use year and month to partition, these API would keep to update the old data from the previous year and month. As a result, I would keep case types as partition keys.
+  
 ### Transformations
-- Tranformations are defined with dbt, Spark or similar technologies
-
+- Most of tranformations are completed with Mage. From BigQuery to Looker Studio, we would need to use custom query to display our data:
+```
+select * from (
+select case_num, case_type, case_address_range, DATE(case_date) as case_date1 from tpe_opendata.theft_data) a
+where a.case_date1 BETWEEN PARSE_DATE('%Y%m%d', @DS_START_DATE) AND  PARSE_DATE('%Y%m%d', @DS_END_DATE)
+```
 ### Dashboard
-
-1. 1 graph that shows the distribution of some categorical data
-2. 1 graph that shows the distribution of the data across a temporal line
+- Connected to the Looker Studio
+1. 1 graph that shows the locations of the theft data
+2. 1 graph that shows the distribution of the data across one year
+Here is the Dashboard link: [https://lookerstudio.google.com/s/knsLtdAIIq4](https://lookerstudio.google.com/reporting/d2b9291f-7937-44ad-a40d-91cbe9c2df81)
 
 ### Reproducibility
 
 - Instructions are clear, it's easy to run the code, and the code works
 
-
-### MISC
-
-Deploying mage to GCP
-the video DE Zoomcamp 2.2.7 is missing  the actual deployment of Mage using Terraform to GCP. The steps for the deployment were not covered in the video.
-I successfully deployed it and wanted to share some key points:
-In variables.tf, set the project_id default value to your GCP project ID.
- 2 . Enable the Cloud Filestore API:
- Visit the Google Cloud Console.
-Navigate to "APIs & Services" > "Library."
-Search for "Cloud Filestore API."
-Click on the API and enable it.
-To perform the deployment:
-terraform init
