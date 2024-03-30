@@ -15,6 +15,7 @@ Use **batch** data pipeline running ETL jobs twice a week.
 - **Data Warehouse**: BigQuery
 
 ### Cloud
+- The project is developed in the cloud and IaC tools are used
 
 ### Data ingestion 
 
