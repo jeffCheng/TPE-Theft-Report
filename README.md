@@ -18,9 +18,20 @@ Use **batch** data pipeline running ETL jobs twice a week.
 - This project is developed in the GCP and Terraform is used for creating Google Cloud Storage and BigQuery dataset.
 
 ### Data ingestion 
+- Use Batch / Workflow orchestration and Divide into two pipelines:
 
-- Batch / Workflow orchestration
-    - End-to-end pipeline: multiple steps in the DAG, uploading data to data lake
+<img src="https://github.com/jeffCheng/TPE-Theft-Report/blob/ff89b21d85f4ded27f57248500d3aa52add2072f/img/tpe_theft_etl.png" width="400">
+
+  - **tpe_theft_etl** :
+    - taipei_crime_loader: load the data from API
+    - taipei_crime_tranformer: clean null and empty data and rename columns
+    - taipei_crime_export_gloudstroge: use pyarrow to partition the data by case types
+
+<img src="https://github.com/jeffCheng/TPE-Theft-Report/blob/ff89b21d85f4ded27f57248500d3aa52add2072f/img/tpe_theft_etl.png" width="400">
+
+  - **tpe_theft_gcs_to_bigquery**:
+    - tpe_theft_raw_data: load the raw data from Google Cloud Storage bucket
+    - tpe_theft_to_bigquery: Append the data to Bigquery
 
 ### Data warehouse
 - Tables are partitioned and clustered in a way in different theft case types including house, motorcycle, bicycle and car because there is different API to call by each types. Although some use cases would use year and month to partition, these API would keep to update the old data from the previous year and month. As a result, I would keep case types as partition keys.
@@ -38,8 +49,4 @@ where a.case_date1 BETWEEN PARSE_DATE('%Y%m%d', @DS_START_DATE) AND  PARSE_DATE(
     2. 1 graph that shows the distribution of the data across one year
 
 - Here is the Dashboard link: [https://lookerstudio.google.com/s/knsLtdAIIq4](https://lookerstudio.google.com/reporting/d2b9291f-7937-44ad-a40d-91cbe9c2df81)
-
-### Reproducibility
-
-- Instructions are clear, it's easy to run the code, and the code works
 
