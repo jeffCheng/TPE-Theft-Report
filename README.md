@@ -41,10 +41,13 @@ Use **batch** data pipeline running ETL jobs twice a week.
 ```
 select * from (
 select case_num, case_type, case_address_range, DATE(case_date) as case_date1 from tpe_opendata.theft_data) a
-where a.case_date1 BETWEEN PARSE_DATE('%Y%m%d', @DS_START_DATE) AND  PARSE_DATE('%Y%m%d', @DS_END_DATE)
+where a.case_date1
+BETWEEN
+PARSE_DATE('%Y%m%d', @DS_START_DATE)
+AND  PARSE_DATE('%Y%m%d', @DS_END_DATE)
 ```
 ### Dashboard
 - Connected to the Looker Studio
     1. 1 graph that shows the locations of the theft data
     2. 1 graph that shows the distribution of the data across one year
-
+- Here is the link: https://lookerstudio.google.com/reporting/d2b9291f-7937-44ad-a40d-91cbe9c2df81/page/FxsuD
